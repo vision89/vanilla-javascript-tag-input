@@ -4,6 +4,12 @@
 
 ## Demo
 
+http://vision89.github.io/vanilla-javascript-tag-input/demo/index.html#
+
+## To install
+
+	bower install vision89/vanilla-javascript-tag-input --save
+
 ## Requirements
 
 	Include /dist/scripts/app.js

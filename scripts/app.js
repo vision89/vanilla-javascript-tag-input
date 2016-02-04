@@ -33,14 +33,15 @@
       
       //Add the tag
       var span = document.createElement('span');
-      span.appendChild(document.createTextNode(tag.value + '\u00a0'));
+      span.appendChild(document.createTextNode(tag.value));
       
       //Create delete
-      var x = document.createTextNode('X');
       var del = document.createElement('a');
       del.setAttribute('href', "#");
+      del.setAttribute('title', "Delete");
+      del.className = "vtil-delete";
       del.setAttribute('onclick', path + '.removeTag("' + tag.id + '")');
-      del.appendChild(x);
+      del.innerHTML = '&nbsp;<i class="fa fa-trash-o"></i>';
       span.appendChild(del);
       
       //Make it look like a card
@@ -76,6 +77,7 @@
         
         this.tags.push({'id': d.toISOString(), 'value': this.inputElement.value});
         _redrawTags(this.contentElement, this.tags, this.objectPath);
+        this.inputElement.value = "";
         
       }
       
@@ -87,7 +89,25 @@
      **/ 
     removeTag: function(id) {
       
-      console.log('id', id);
+      var index = -1;
+
+      for(var i = 0; i < this.tags.length; ++i) {
+
+        if(this.tags[i].id === id) {
+
+          index = i;
+          break;
+
+        }
+
+      }
+
+      if(index > -1) {
+
+        this.tags.splice(index, 1);
+        _redrawTags(this.contentElement, this.tags, this.objectPath);
+
+      }
       
     }
     
